@@ -4,6 +4,7 @@ import {ListItem} from 'react-native-elements';
 import {DISHES} from '../shared/Dishes';
 import {Button} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {DrawerActions} from 'react-navigation-drawer';
 
 class Menu extends Component {
   constructor(props) {
@@ -38,7 +39,7 @@ class Menu extends Component {
           renderItem={renderMenuItem}
           keyExtractor={item => item.id.toString()}
         />
-        <View style={{marginHorizontal: 50, marginTop: 10}}>
+        {/* <View style={{marginHorizontal: 50, marginTop: 10}}>
           <Button
             title="About"
             buttonStyle={{backgroundColor: 'red'}}
@@ -51,9 +52,9 @@ class Menu extends Component {
             icon={<Icon name="arrow-right" size={15} color="white" />}
             title="contact"
             buttonStyle={{borderColor: 'green'}}
-            onPress={() => navigate('Contact')}
+            onPress={() => navigate('About')}
           />
-        </View>
+        </View> */}
       </View>
     );
   }

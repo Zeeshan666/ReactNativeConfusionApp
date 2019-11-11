@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Text, View} from 'react-native';
 import {Card} from 'react-native-elements';
 import {DISHES} from '../shared/Dishes';
+import {Button} from 'react-native-elements';
 const RenderDish = props => {
   const dish = props.dish;
 
@@ -30,7 +31,12 @@ class Dishdetail extends Component {
   };
   render() {
     const dishID = this.props.navigation.getParam('dishId');
-    return <RenderDish dish={this.state.dishes[+dishID]} />;
+    const {navigate} = this.props.navigation;
+    return (
+      <View>
+        <RenderDish dish={this.state.dishes[+dishID]} />
+      </View>
+    );
   }
 }
 
