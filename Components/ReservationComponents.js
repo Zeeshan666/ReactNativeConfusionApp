@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import {Card} from 'react-native-elements';
 import DatePicker from 'react-native-datepicker';
+import * as Animatable from 'react-native-animatable';
 export class ReservationComponents extends Component {
   constructor(props) {
     super(props);
@@ -98,12 +99,14 @@ export class ReservationComponents extends Component {
           />
         </View>
         <View style={styles.formRow}>
-          <Button
-            onPress={() => this.handleReservation()}
-            title="Reserve"
-            color="#512DA8"
-            accessibilityLabel="Learn more about this purple button"
-          />
+          <Animatable.View animation="fadeInDownBig">
+            <Button
+              onPress={() => this.handleReservation()}
+              title="Reserve"
+              color="#512DA8"
+              accessibilityLabel="Learn more about this purple button"
+            />
+          </Animatable.View>
         </View>
         <Modal
           animationType={'slide'}
