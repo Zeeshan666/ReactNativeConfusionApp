@@ -331,6 +331,7 @@ export class Main extends Component {
   }
 }
 
+// eslint-disable-next-line prettier/prettier
 export default connect(mapStateToProps, mapDispatchToProps)(Main);
 
 const styles = StyleSheet.create({

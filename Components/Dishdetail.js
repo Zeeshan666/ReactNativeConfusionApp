@@ -6,6 +6,7 @@ import {
   FlatList,
   Modal,
   StyleSheet,
+  Alert,
 } from 'react-native';
 import {Card, Icon, Rating, Input, Button} from 'react-native-elements';
 import {connect} from 'react-redux';
@@ -95,6 +96,7 @@ class Dishdetail extends Component {
 
   markFavorite(dishId) {
     this.props.postFavorite(dishId);
+    console.log(dishId);
   }
   toggleModal() {
     this.setState({showModal: !this.state.showModal});
@@ -118,7 +120,7 @@ class Dishdetail extends Component {
       <ScrollView>
         <RenderDish
           dish={this.props.dishes.dishes[+dishID]}
-          favorite={this.props.favourites.some(el => el === dishID)}
+          favorite={this.props.favorites.some(el => el === dishID)}
           onPress={() => this.markFavorite(dishID)}
           onSelect={() => this.toggleModal()}
         />
@@ -189,7 +191,8 @@ const mapStateToProps = state => {
   return {
     dishes: state.dishes,
     comments: state.comments,
-    favourites: state.favourites,
+
+    favorites: state.favorites,
   };
 };
 const mapDispatchToProps = dispatch => {
@@ -201,6 +204,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(postComment(dishId, rating, comment, author)),
   };
 };
+// eslint-disable-next-line prettier/prettier
 export default connect(mapStateToProps, mapDispatchToProps)(Dishdetail);
 const styles = StyleSheet.create({
   formRow: {
