@@ -1,7 +1,7 @@
 export const DISHES = [
   {
     id: 0,
-    name: 'Uthappizza',
+    name: 'Indian',
     image: 'images/uthappizza.png',
     category: 'mains',
     label: 'Hot',
@@ -12,7 +12,7 @@ export const DISHES = [
   },
   {
     id: 1,
-    name: 'Zucchipakoda',
+    name: 'Pakistani',
     image: 'images/zucchipakoda.png',
     category: 'appetizer',
     label: '',
@@ -23,8 +23,19 @@ export const DISHES = [
   },
   {
     id: 2,
-    name: 'Vadonut',
+    name: 'chines',
     image: 'images/vadonut.png',
+    category: 'appetizer',
+    label: 'New',
+    price: '1.99',
+    featured: false,
+    description:
+      'A quintessential ConFusion experience, is it a vada or is it a donut?',
+  },
+  {
+    id: 3,
+    name: 'fries',
+    image: 'images/buffet.png',
     category: 'appetizer',
     label: 'New',
     price: '1.99',

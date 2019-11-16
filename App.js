@@ -5,14 +5,20 @@
  * @format
  * @flow
  */
-
-import React, {Component} from 'react';
+console.disableYellowBox = true;
+import React from 'react';
 import Main from './Components/Main';
+import {Provider} from 'react-redux';
+import {ConfigureStore} from './redux/configureStore';
 
-class App extends Component {
+const store = ConfigureStore();
+
+export default class App extends React.Component {
   render() {
-    return <Main />;
+    return (
+      <Provider store={store}>
+        <Main />
+      </Provider>
+    );
   }
 }
-
-export default App;

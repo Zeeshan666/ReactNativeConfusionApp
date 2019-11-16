@@ -1,63 +1,54 @@
 import React, {Component} from 'react';
-import {FlatList, View} from 'react-native';
-import {ListItem} from 'react-native-elements';
-import {DISHES} from '../shared/Dishes';
-import {Button} from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import {DrawerActions} from 'react-navigation-drawer';
+import {FlatList, View, Text} from 'react-native';
+import Loading from './LoadingComponents';
+import {connect} from 'react-redux';
+import {baseUrl} from '../shared/baseUrl';
+import {Tile} from 'react-native-elements';
 
 class Menu extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      dishes: DISHES,
-    };
-  }
   static navigationOptions = {
     title: 'Menu',
+  };
+  renderMenuItem = ({item, index}) => {
+    return (
+      <Tile
+        key={index}
+        title={item.name}
+        caption={item.description}
+        featured
+        onPress={() =>
+          this.props.navigation.navigate('Dishdetail', {dishId: item.id})
+        }
+        imageSrc={{uri: baseUrl + item.image}}
+      />
+    );
   };
 
   render() {
     const {navigate} = this.props.navigation;
-    const renderMenuItem = ({item, index}) => {
+
+    if (this.props.dishes.isLoading) {
+      return <Loading />;
+    } else if (this.props.dishes.errMess) {
       return (
-        <ListItem
-          key={index}
-          title={item.name}
-          subtitle={item.description}
-          leftAvatar={{source: require('./images/uthappizza.png')}}
-          onPress={() => navigate('Dishdetail', {dishId: item.id})}
-          bottomDivider
-          chevron
-        />
+        <View>
+          <Text>{this.props.dishes.errMess}</Text>
+        </View>
       );
-    };
-    return (
-      <View>
+    } else {
+      return (
         <FlatList
-          data={this.state.dishes}
-          renderItem={renderMenuItem}
+          data={this.props.dishes.dishes}
+          renderItem={this.renderMenuItem}
           keyExtractor={item => item.id.toString()}
         />
-        {/* <View style={{marginHorizontal: 50, marginTop: 10}}>
-          <Button
-            title="About"
-            buttonStyle={{backgroundColor: 'red'}}
-            onPress={() => navigate('About')}
-          />
-        </View>
-        <View style={{marginHorizontal: 50, marginTop: 10}}>
-          <Button
-            type="outline"
-            icon={<Icon name="arrow-right" size={15} color="white" />}
-            title="contact"
-            buttonStyle={{borderColor: 'green'}}
-            onPress={() => navigate('About')}
-          />
-        </View> */}
-      </View>
-    );
+      );
+    }
   }
 }
-
-export default Menu;
+const mapStateToProps = state => {
+  return {
+    dishes: state.dishes,
+  };
+};
+export default connect(mapStateToProps)(Menu);
