@@ -63,8 +63,8 @@ class Favorites extends Component {
         //     leftAvatar={{source: {uri: baseUrl + item.image}}}
         //   />
         // </Swipeout>
-        <Animatable.View animation="fadeInRightBig" duration={2000}>
-          <Swipeout right={rightButton} autoClose={true}>
+        <Swipeout right={rightButton} autoClose={true}>
+          <Animatable.View animation="fadeInRightBig" duration={2000}>
             <ListItem
               key={index}
               title={item.name}
@@ -73,8 +73,8 @@ class Favorites extends Component {
               onPress={() => navigate('Dishdetail', {dishId: item.id})}
               leftAvatar={{source: {uri: baseUrl + item.image}}}
             />
-          </Swipeout>
-        </Animatable.View>
+          </Animatable.View>
+        </Swipeout>
       );
     };
 

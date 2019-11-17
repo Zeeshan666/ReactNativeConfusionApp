@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import {baseUrl} from '../shared/baseUrl';
 import {Tile} from 'react-native-elements';
 import * as Animatable from 'react-native-animatable';
-
 class Menu extends Component {
   static navigationOptions = {
     title: 'Menu',
