@@ -14,11 +14,8 @@ import {Card, Icon, Rating, Input, Button} from 'react-native-elements';
 import {connect} from 'react-redux';
 import {baseUrl} from '../shared/baseUrl';
 import {postFavorite, addComments, postComment} from '../redux/ActionCreators';
-<<<<<<< HEAD
 handleViewRef = ref => (this.view = ref);
-=======
-import * as Animatable from 'react-native-animatable';
->>>>>>> 954b06ea839a80ef5e165972ae54bde4802a4def
+
 const RenderDish = props => {
   const dish = props.dish;
   const recognizeDrag = ({moveX, moveY, dx, dy}) => {
@@ -71,7 +68,12 @@ const RenderDish = props => {
 
   if (dish != null) {
     return (
-      <Animatable.View animation="fadeInDown" duration={2000} delay={1000}>
+      <Animatable.View
+        animation="fadeInDown"
+        duration={2000}
+        delay={1000}
+        ref={this.handleViewRef}
+        {...panResponder.panHandlers}>
         <Card
           featuredTitle={dish.name}
           // image={require('./images/uthappizza.png')}>
