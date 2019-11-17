@@ -8,6 +8,7 @@ import {
   Switch,
   Button,
   Modal,
+  Alert,
 } from 'react-native';
 import {Card} from 'react-native-elements';
 import DatePicker from 'react-native-datepicker';
@@ -31,7 +32,21 @@ export class ReservationComponents extends Component {
   handleReservation = () => {
     console.log(JSON.stringify(this.state));
 
-    this.toggleModal();
+    // this.toggleModal();
+    Alert.alert(
+      'Your Reservation OK?',
+      'Number of Guests: ' +
+        this.state.guests +
+        '\nSmoking? ' +
+        this.state.smoking +
+        '\nDate and Time: ' +
+        this.state.date,
+      [
+        {text: 'Cancel', onPress: () => this.resetForm(), style: 'cancel'},
+        {text: 'OK', onPress: () => this.resetForm()},
+      ],
+      {cancelable: false},
+    );
   };
   resetForm = () => {
     this.setState({
