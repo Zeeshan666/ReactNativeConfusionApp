@@ -8,6 +8,7 @@ import {
   StyleSheet,
   Alert,
   PanResponder,
+  Share,
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import {Card, Icon, Rating, Input, Button} from 'react-native-elements';
@@ -15,7 +16,18 @@ import {connect} from 'react-redux';
 import {baseUrl} from '../shared/baseUrl';
 import {postFavorite, addComments, postComment} from '../redux/ActionCreators';
 handleViewRef = ref => (this.view = ref);
-
+const shareDish = (title, message, url) => {
+  Share.share(
+    {
+      title: title,
+      message: title + ': ' + message + ' ' + url,
+      url: url,
+    },
+    {
+      dialogTitle: 'Share ' + title,
+    },
+  );
+};
 const RenderDish = props => {
   const dish = props.dish;
   const recognizeDrag = ({moveX, moveY, dx, dy}) => {
@@ -85,6 +97,7 @@ const RenderDish = props => {
               alignItems: 'center',
               alignContent: 'center',
               flex: 1,
+              marginHorizontal:40
             }}>
             <Icon
               raised
@@ -105,6 +118,17 @@ const RenderDish = props => {
               type="font-awesome"
               color="#512DA8"
               onPress={() => props.onSelect()}
+            />
+            <Icon
+              raised
+              reverse
+              name="share"
+              type="font-awesome"
+              color="#51D2A8"
+              style={styles.cardItem}
+              onPress={() =>
+                shareDish(dish.name, dish.description, baseUrl + dish.image)
+              }
             />
           </View>
         </Card>
